@@ -4,7 +4,7 @@
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color: var(--black3);
+    color: var(--white1);
 
 }
 
@@ -17,11 +17,33 @@
 }
 
 body {
+    height: 100vh;
     margin: 0;
     padding: 0;
     top: 0;
     left: 0;
     background: brown;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
+button {
+    cursor: pointer;
+    width: 18rem;
+    height: 4vh;
+    border-radius: .6rem;
+    border: none;
+    background: rgb(99, 246, 99);
+    color: var(--black3);
+    font-size: 15px;
+    font-weight: 600;
+    transition: .2s;
+    box-shadow: 0 0 5px 1px #333333;
+}
 
+button:hover {
+    background: rgb(65, 188, 65);
+    scale: .98;
+}
