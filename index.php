@@ -14,17 +14,22 @@
             <div class="form-box login">
                 <form action="index.php" method="post">
                     <div class="input-box login">
-                        <input type="username" placeholder="Username" name="username" required>
+                        <input type="text" placeholder="Username" name="username" required>
                     </div>
                     <div class="input-box login">
-                        <input type="password" placeholder="Password" name="password" required>
+                        <input type="password" id="password" placeholder="Password" name="password" required>
+                        <p class="caps-warn">Caps lock is on!</p>
                     </div>
                     <!-- <input type="radio"> -->
                     <button name="login">Login</button>
+
                 </form>
             </div>
         </div>
     </section>
+
+
+  <script src="index.js"></script>
 </body>
 
 </html>
@@ -50,11 +55,9 @@ try {
             }
         }
     }
-} catch (mysqli_sql_exception $e) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+} catch (Exception $e) {
+    echo "Error Encountered";
+} finally {
+    mysqli_close($conn);
 }
-
-
-
-
 ?>

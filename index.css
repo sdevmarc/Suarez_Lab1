@@ -43,10 +43,10 @@ section {
 
 .form-box {
     width: 26rem;
-    height: 65vh;
+    height: 45vh;
     background: linear-gradient(to top,
             rgba(71, 75, 111, 0.158),
-            rgb(227, 43, 43));
+            rgb(43, 227, 113));
     border-radius: 1rem;
     box-shadow: 0 0 10px 1px #000000;
 }
@@ -72,7 +72,7 @@ input {
 button {
     cursor: pointer;
     width: 18rem;
-    height: 5vh;
+    height: 4vh;
     border-radius: .6rem;
     border: none;
     background: rgb(99, 246, 99);
@@ -86,4 +86,9 @@ button {
 button:hover {
     background: rgb(65, 188, 65);
     scale: .98;
+}
+
+.caps-warn {
+    color: var(--white1);
+    display: none;
 }
