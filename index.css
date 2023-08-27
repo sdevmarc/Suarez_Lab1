@@ -21,6 +21,69 @@ body {
     padding: 0;
     top: 0;
     left: 0;
-    background: var(--white2);
+    background: var(--black3);
+}
 
+section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0 -15rem;
+}
+
+.form-box {
+    width: 26rem;
+    height: 65vh;
+    background: linear-gradient(to top,
+            rgba(71, 75, 111, 0.158),
+            rgb(227, 43, 43));
+    border-radius: 1rem;
+    box-shadow: 0 0 10px 1px #000000;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
+}
+
+input {
+    width: 18rem;
+    height: 5.6vh;
+    padding: 0 1rem;
+    border-radius: .6rem;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+    width: 18rem;
+    height: 5vh;
+    border-radius: .6rem;
+    border: none;
+    background: rgb(99, 246, 99);
+    color: var(--black3);
+    font-size: 15px;
+    font-weight: 600;
+    transition: .2s;
+    box-shadow: 0 0 5px 1px #333333;
+}
+
+button:hover {
+    background: rgb(65, 188, 65);
+    scale: .98;
 }
