@@ -1,8 +1,13 @@
 <?php
 session_start();
 
-$username = $_SESSION['username'];
-
+if(!isset($_SESSION['username'])) {
+    header('location: logout.php');
+    exit();
+}
+else{
+    $username = $_SESSION['username'];
+}
 ?>
 
 
@@ -18,16 +23,14 @@ $username = $_SESSION['username'];
 
 <body>
     <h1>Dashboard</h1>
-    <form action="dashboard.php" method="post">
-        <button name="logout">Logout</button>
+
+    <form action="dashboard.php" method="post" id="logoutForm">
+        <!-- <div class="status">asd</div> -->
+        <button name="logout" onclick="confirmLogout()">Logout</button>
     </form>
     <div class="message">Welcome back, <?= $username ?></div>
 
-
-
-
-
-
+    <script src="dashboard.js"></script>
 </body>
 
 </html>
@@ -36,7 +39,8 @@ $username = $_SESSION['username'];
 
 try {
     if (isset($_POST['logout'])) {
-        session_unset();
+        session_start();
+        $_SESSION = array();
         session_destroy();
         header('location: index.php');
         exit();

@@ -29,7 +29,7 @@
     </section>
 
 
-  <script src="index.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
@@ -55,6 +55,50 @@ try {
             }
         }
     }
+
+    // function getLoginAttempts($username)
+    // {
+    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
+    //     $sql = "select attempts from tbl_users where username = ?'";
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->bind_param('s', $username);
+    //     $stmt->execute();
+    //     $stmt->close();
+    //     $conn->close();
+    // }
+
+    // function incrementLoginAttempts($username)
+    // {
+    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
+    //     $sql = "update tbl_users set attempts = attempts + 1 where username = ?'";
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->bind_param('s', $username);
+    //     $stmt->execute();
+    //     $stmt->close();
+    //     $conn->close();
+    // }
+
+    // function resetLoginAttempts($username)
+    // {
+    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
+    //     $sql = "update tbl_users set attempts = 0 where username = ?'";
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->bind_param('s', $username);
+    //     $stmt->execute();
+    //     $stmt->close();
+    //     $conn->close();
+    // }
+
+    // function checkCredentials($username, $password)
+    // {
+    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
+    //     $sql = "select username, password tbl_users set attempts = 0 where username = ?'";
+    //     $stmt = $conn->prepare($sql);
+    //     $stmt->bind_param('ss', $username, $password);
+    //     $stmt->execute();
+    //     $stmt->close();
+    //     $conn->close();
+    // }
 } catch (Exception $e) {
     echo "Error Encountered";
 } finally {
