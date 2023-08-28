@@ -1,4 +1,3 @@
-function confirmLogout() {
-    var confirmation = confirm("Are you sure you want to logout?");
-   console.log(confirmation);
+function Logout() {
+    document.querySelector('.form-box').classList.toggle('active');
 }

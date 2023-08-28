@@ -1,3 +1,6 @@
+<?php
+$userStatus = ''; // Initialize the variable
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +22,13 @@
                     <div class="input-box login">
                         <input type="password" id="password" placeholder="Password" name="password" required>
                         <p class="caps-warn">Caps lock is on!</p>
+                        <div class="show-pas">
+                            Show
+                        </div>
                     </div>
                     <!-- <input type="radio"> -->
-                    <button name="login">Login</button>
 
+                    <button name="login">Login</button>
                 </form>
             </div>
         </div>
@@ -36,14 +42,13 @@
 
 <?php
 try {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
-
     if (isset($_POST['login'])) {
         if (!$conn) {
             echo "<script>alert('You are not connected to the database!')</script>";
         } else {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
             $sql = "select * from tbl_users where username = '$username' and password = '$password'";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
@@ -51,54 +56,26 @@ try {
                 $_SESSION['username'] = $username;
                 header('location: dashboard.php');
             } else {
+
                 echo "<script>alert('Invalid username or password!')</script>";
+                $sql = "update tbl_users set attempts = attempts + 1 where username = '$username'";
+                mysqli_query($conn, $sql);
+                $attemptQuery = "select attempts from tbl_users where username = '$username'";
+                $attemptResult = mysqli_query($conn, $attemptQuery);
+                $row = mysqli_fetch_assoc($attemptResult);
+                $attempts = $row['attempts'];
+                echo "<script>alert('attempts: $attempts');</script>";
+
+
+
+                if ($attempts >= 3) {
+                    echo "<script>alert('Your account has been disabled!')</script>";
+                    $sql = "update tbl_users set status = 'locked' where username = '$username'";
+                    mysqli_query($conn, $sql);
+                }
             }
         }
     }
-
-    // function getLoginAttempts($username)
-    // {
-    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
-    //     $sql = "select attempts from tbl_users where username = ?'";
-    //     $stmt = $conn->prepare($sql);
-    //     $stmt->bind_param('s', $username);
-    //     $stmt->execute();
-    //     $stmt->close();
-    //     $conn->close();
-    // }
-
-    // function incrementLoginAttempts($username)
-    // {
-    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
-    //     $sql = "update tbl_users set attempts = attempts + 1 where username = ?'";
-    //     $stmt = $conn->prepare($sql);
-    //     $stmt->bind_param('s', $username);
-    //     $stmt->execute();
-    //     $stmt->close();
-    //     $conn->close();
-    // }
-
-    // function resetLoginAttempts($username)
-    // {
-    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
-    //     $sql = "update tbl_users set attempts = 0 where username = ?'";
-    //     $stmt = $conn->prepare($sql);
-    //     $stmt->bind_param('s', $username);
-    //     $stmt->execute();
-    //     $stmt->close();
-    //     $conn->close();
-    // }
-
-    // function checkCredentials($username, $password)
-    // {
-    //     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
-    //     $sql = "select username, password tbl_users set attempts = 0 where username = ?'";
-    //     $stmt = $conn->prepare($sql);
-    //     $stmt->bind_param('ss', $username, $password);
-    //     $stmt->execute();
-    //     $stmt->close();
-    //     $conn->close();
-    // }
 } catch (Exception $e) {
     echo "Error Encountered";
 } finally {
