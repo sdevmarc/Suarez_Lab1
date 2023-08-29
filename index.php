@@ -42,6 +42,7 @@ $userStatus = ''; // Initialize the variable
 
 <?php
 try {
+    date_default_timezone_set('Asia/Shanghai');
     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
     if (isset($_POST['login'])) {
         if (!$conn) {
@@ -49,7 +50,7 @@ try {
         } else {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $sql = "select * from tbl_users where username = '$username' and password = '$password'";
+            $sql = "select * from tbl_users where username = '$username' and binary password = '$password'";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 session_start();
@@ -66,11 +67,12 @@ try {
                 $attempts = $row['attempts'];
                 echo "<script>alert('attempts: $attempts');</script>";
 
-
-
                 if ($attempts >= 3) {
-                    echo "<script>alert('Your account has been disabled!')</script>";
-                    $sql = "update tbl_users set status = 'locked' where username = '$username'";
+
+                    $time = time();
+                    $currentTime = date('Y-m-d H:i:s', $time); // Format as 'YYYY-MM-DD HH:MM:SS'
+                    echo "<script>alert('Unauthorized Access Detected')</script>";
+                    $sql = "update tbl_users set status = 'Unauthorized Access', unlock_time = '$currentTime' where username = '$username'";
                     mysqli_query($conn, $sql);
                 }
             }
