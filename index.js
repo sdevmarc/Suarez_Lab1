@@ -6,7 +6,6 @@ passwordInput.addEventListener('keyup', e => {
         capsWarn.style.display = 'block';
     } else {
         capsWarn.style.display = 'none';
-        capsWarn.style.color = 'red';
     }
 });
 

@@ -1,11 +1,13 @@
 <?php
 session_start();
-
+$conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
 if (!isset($_SESSION['username'])) {
     header('location: logout.php');
     exit();
 } else {
     $username = $_SESSION['username'];
+    $sql = "update tbl_users set isactive = 1 where username = '$username'";
+    mysqli_query($conn, $sql);
 }
 ?>
 
@@ -51,6 +53,7 @@ if (!isset($_SESSION['username'])) {
 
 <?php
 try {
+    $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
     if (isset($_POST['Yes'])) {
         session_start();
         $_SESSION = array();
