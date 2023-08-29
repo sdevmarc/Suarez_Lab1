@@ -19,3 +19,14 @@ document.querySelector('.show-pas').addEventListener('click', () => {
         document.querySelector('.show-pas').textContent = 'Show';
     }
 });
+
+
+document.getElementById('btnUser').addEventListener('click', () => {
+    document.querySelector('.form-box').classList.toggle('active');
+});
+
+document.getElementById('unexit').addEventListener('click', () => {
+    document.querySelector('.unauthorized').classList.remove('active');
+});
+
+
