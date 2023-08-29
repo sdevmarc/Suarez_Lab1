@@ -55,6 +55,8 @@ if (!isset($_SESSION['username'])) {
 try {
     $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
     if (isset($_POST['Yes'])) {
+        $sql = "update tbl_users set isactive = 0, attempts = 0, status = '0' where username = '$username'";
+        mysqli_query($conn, $sql);
         session_start();
         $_SESSION = array();
         session_destroy();
