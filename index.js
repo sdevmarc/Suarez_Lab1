@@ -10,7 +10,13 @@ passwordInput.addEventListener('keyup', e => {
     }
 });
 
-
+let passwordState = false;
 document.querySelector('.show-pas').addEventListener('click', () => {
-    document.querySelector('.show-pas').classList.toggle('active');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        document.querySelector('.show-pas').textContent = 'Hide';
+    } else {
+        passwordInput.type = 'password';
+        document.querySelector('.show-pas').textContent = 'Show';
+    }
 });

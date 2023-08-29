@@ -4,7 +4,7 @@
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color: var(--white1);
+    color: var(--black3);
 
 }
 
@@ -43,7 +43,7 @@ section {
 
 .form-box {
     width: 26rem;
-    height: 45vh;
+    height: 55vh;
     background: linear-gradient(to top,
             rgba(71, 75, 111, 0.158),
             rgb(43, 227, 113));
