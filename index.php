@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,6 +106,7 @@
 
 <?php
 try {
+    
     date_default_timezone_set('Asia/Shanghai');
     $conn = mysqli_connect('localhost', 'root', '', 'db_lazamarc');
     if (isset($_POST['login'])) {
@@ -112,12 +115,14 @@ try {
         } else {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $sql = "select * from tbl_users where username = '$username' and binary password = '$password'";
+            $sql = "select * from tbl_users where username = '$username' and password = '$password'";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 session_start();
                 $_SESSION['username'] = $username;
                 header('location: dashboard.php');
+                ob_end_flush();
+                exit();
             } else {
                 $sql = "select id_users from tbl_users where username = '$username'";
                 $index = mysqli_query($conn, $sql);
