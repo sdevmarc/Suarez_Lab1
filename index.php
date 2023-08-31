@@ -120,7 +120,7 @@ try {
             $result = mysqli_query($conn, $sql);
             $arow = mysqli_fetch_assoc($result);
             $theuser = $arow['username'];
-            echo "<script>alert('the user: $theuser')</script>";
+            // echo "<script>alert('the user: $theuser')</script>";
 
             if (mysqli_num_rows($result) > 0) {
                 if (strtolower($theuser) == 'admin') {
