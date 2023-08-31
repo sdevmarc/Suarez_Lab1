@@ -105,7 +105,7 @@
 <?php
 try {
     date_default_timezone_set('Asia/Shanghai');
-    $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
+    $conn = mysqli_connect('localhost', 'root', '', 'db_lazamarc');
     if (isset($_POST['login'])) {
         if (!$conn) {
             echo "<script>alert('You are not connected to the database!')</script>";
@@ -119,11 +119,16 @@ try {
                 $_SESSION['username'] = $username;
                 header('location: dashboard.php');
             } else {
+                $sql = "select id_users from tbl_users where username = '$username'";
+                $index = mysqli_query($conn, $sql);
+                $irow = mysqli_fetch_assoc($index);
+                $index = $irow['id_users'];
+                // echo "<script>alert('number: $index')</script>";
+                $sql = "update tbl_audit set attempts = attempts + 1 where id_users = '$index'";
+                mysqli_query($conn, $sql);
 
                 echo "<script>document.querySelector('.invalid').classList.toggle('active');</script>";
-                $sql = "update tbl_users set attempts = attempts + 1 where username = '$username'";
-                mysqli_query($conn, $sql);
-                $attemptQuery = "select attempts from tbl_users where username = '$username'";
+                $attemptQuery = "select attempts from tbl_audit where id_users = '$index'";
                 $attemptResult = mysqli_query($conn, $attemptQuery);
                 $row = mysqli_fetch_assoc($attemptResult);
                 $attempts = $row['attempts'];
@@ -135,7 +140,7 @@ try {
                     $currentTime = date('Y-m-d H:i:s', $time); // Format as 'YYYY-MM-DD HH:MM:SS'
                     echo "<script>document.querySelector('.unauthorized').classList.toggle('active');</script>";
                     // echo "<script>alert('Unauthorized Access Detected')</script>";
-                    $sql = "update tbl_users set status = 'Unauthorized Access', unlock_time = '$currentTime' where username = '$username'";
+                    $sql = "update tbl_audit set status = 'Unauthorized Access', lock_time = '$currentTime' where id_users = '$index'";
                     mysqli_query($conn, $sql);
                 }
             }
