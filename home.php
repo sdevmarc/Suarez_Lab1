@@ -1,3 +1,18 @@
+<?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header('Location: logout.php');
+    exit();
+}
+else {
+    $username = $_SESSION['username'];
+    $sql = "update tbl_users set isactive = 1 where username = '$username'";
+    mysqli_query($conn, $sql);
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +25,6 @@
 </head>
 
 <body>
-
-
     <header class="header">
         <div class="logo">
             <a href="">Laza<span>marc.</span></a>
@@ -28,9 +41,14 @@
             <i id="btnUser" class='bx bx-user' style='color:#020202'></i>
             <i class='bx bxs-shopping-bag' style='color:#020202'></i>
         </div>
-
-
     </header>
+
+<section class="section-1">
+
+</section>
+
+
+
 
 </body>
 
