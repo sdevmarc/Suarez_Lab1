@@ -1,14 +1,28 @@
 <?php
 session_start();
 $conn = mysqli_connect('localhost', 'root', '', 'db_lazamarc');
+$username = $_SESSION['username'];
+$sql = "select * from tbl_users where username = '$username'";
+$result = mysqli_query($conn, $sql);
+$arow = mysqli_fetch_assoc($result);
+$theuser = $arow['username'];
+
+// echo "<script>alert('asdasd: $theuser')</script>";
+
 if (!isset($_SESSION['username'])) {
     header('location: logout.php');
     exit();
 } else {
-    echo "<script>alert('asdasd')</script>";
-    $username = $_SESSION['username'];
-    $sql = "update tbl_users set isactive = 1 where username = '$username'";
-    mysqli_query($conn, $sql);
+    
+    if (strtolower($theuser) == 'admin') {
+        echo "<script>alert('asdasd')</script>";
+        $username = $_SESSION['username'];
+        $sql = "update tbl_users set isactive = 1 where username = '$username'";
+        mysqli_query($conn, $sql);
+    } else {
+        header('location: logout.php');
+        exit();
+    }
 }
 ?>
 
