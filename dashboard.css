@@ -10,23 +10,18 @@
 
 :root {
     --white1: #ffffff;
-    --white2: #FEFEFE;
+    --white2: #dcdcdc;
     --black1: #000000;
     --black2: #111111;
     --black3: #222222;
 }
 
-body {
-    height: 100vh;
+body {  
     margin: 0;
     padding: 0;
     top: 0;
     left: 0;
-    background: brown;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    background: var(--white2);
 }
 
 header {
@@ -34,13 +29,11 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 7rem;
+    height: 6vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: linear-gradient(to top,
-    rgba(0, 0, 0, 0),
-    rgb(44, 44, 44));
+    background: red;
     z-index: 1;
 }
 
