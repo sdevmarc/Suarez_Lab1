@@ -117,8 +117,8 @@ section,
 }
 
 .form-box.active {
-    position: absolute;
-    top: 10rem;
+    position: fixed;
+    top: 7rem;
     opacity: 1;
     visibility: visible;
 }
@@ -230,7 +230,7 @@ button:hover {
 }
 
 .unauthorized.active {
-    position: absolute;
+    position: fixed;
     top: 10rem;
     opacity: 1;
     visibility: visible;
@@ -279,6 +279,7 @@ button:hover {
 
 .slides {
     scroll-snap-align: start;
+  
 }
 
 .section-2 {
