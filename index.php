@@ -120,9 +120,10 @@ try {
             $result = mysqli_query($conn, $sql);
             $arow = mysqli_fetch_assoc($result);
             $theuser = $arow['username'];
+            echo "<script>alert('the user: $theuser')</script>";
 
             if (mysqli_num_rows($result) > 0) {
-                if ($theuser == 'admin') {
+                if (strtolower($theuser) == 'admin') {
                     session_start();
                     $_SESSION['username'] = $username;
                     header('location: dashboard.php');
