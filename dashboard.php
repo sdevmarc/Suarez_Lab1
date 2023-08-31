@@ -15,7 +15,7 @@ if (!isset($_SESSION['username'])) {
 } else {
     
     if (strtolower($theuser) == 'admin') {
-        echo "<script>alert('asdasd')</script>";
+        // echo "<script>alert('asdasd')</script>";
         $username = $_SESSION['username'];
         $sql = "update tbl_users set isactive = 1 where username = '$username'";
         mysqli_query($conn, $sql);
