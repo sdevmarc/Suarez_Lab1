@@ -4,13 +4,13 @@
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color: var(--white1);
+    color: var(--black3);
 
 }
 
 :root {
     --white1: #ffffff;
-    --white2: #dcdcdc;
+    --white2: #fefefe;
     --black1: #000000;
     --black2: #111111;
     --black3: #222222;
@@ -22,4 +22,63 @@ body {
     top: 0;
     left: 0;
     background: var(--white2);
+}
+
+/*  Starting Header  */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header a,
+i {
+    cursor: pointer;
+    margin: 0 .5rem;
+    font-weight: 500;
+}
+
+header button {
+    width: 9rem;
+    height: 3vh;
+    font-size: 12px;
+    color: var(--black3);
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid var(--black3);
+    border-radius: .4rem;
+    transition: .5s;
+}
+
+header button:hover {
+    color: var(--white2);
+    background: rgb(81, 81, 238);
+    scale: .98;
+}
+
+header .logo a {
+    color: var(--black3);
+    transition: 0.6s;
+}
+
+header .logo a:hover {
+    color: rgb(112, 112, 255);
+    transition: 0.6s;
+}
+
+header span {
+    color: var(--black3);
+    transition: 0.6s;
+    font-weight: 600;
+}
+
+header .logo:hover span {
+    color: var(--white1);
+    background: rgb(112, 112, 255);
+
 }
