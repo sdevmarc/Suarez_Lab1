@@ -1,10 +1,11 @@
 <?php
 session_start();
-$conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
+$conn = mysqli_connect('localhost', 'root', '', 'db_lazamarc');
 if (!isset($_SESSION['username'])) {
     header('location: logout.php');
     exit();
 } else {
+    echo "<script>alert('asdasd')</script>";
     $username = $_SESSION['username'];
     $sql = "update tbl_users set isactive = 1 where username = '$username'";
     mysqli_query($conn, $sql);
@@ -49,14 +50,25 @@ if (!isset($_SESSION['username'])) {
     </section>
     <script src="dashboard.js"></script>
 </body>
+
 </html>
 
 <?php
 try {
-    $conn = mysqli_connect('localhost', 'root', '', 'db_accounts');
+    $conn = mysqli_connect('localhost', 'root', '', 'db_lazamarc');
     if (isset($_POST['Yes'])) {
-        $sql = "update tbl_users set isactive = 0, attempts = 0, status = '0' where username = '$username'";
+        $sql = "update tbl_users set isactive = 0 where username = '$username'";
         mysqli_query($conn, $sql);
+
+
+        $sql = "select id_users from tbl_users where username = '$username'";
+        $index = mysqli_query($conn, $sql);
+        $irow = mysqli_fetch_assoc($index);
+        $index = $irow['id_users'];
+        $sql = "update tbl_audit set attempts = 0, status = 0, lock_time = 0 where id_users = '$index'";
+        mysqli_query($conn, $sql);
+
+
         session_start();
         $_SESSION = array();
         session_destroy();
